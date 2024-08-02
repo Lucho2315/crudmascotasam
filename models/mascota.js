@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const mascotaSchema = new schema({
+const mascotaSchema = new Schema({
     nombre: String,
     descripcion: String
-})
+});
 
 /* creacion del modelo */
-const Mascota = mongoose.model('mascota', mascotaSchema);
+const Mascota = mongoose.model('Mascota', mascotaSchema);
 module.exports = Mascota;
