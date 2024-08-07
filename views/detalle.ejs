@@ -8,6 +8,19 @@
         <% } %>
 
         <% if (!error) { %>
+           
+                <form method="post" id="formEditar">
+                    <input type="text" class="form-control my-2" name="nombre" id="nombre" value="<%= mascota.nombre %>">
+                    <input type="text" class="form-control my-2" name="descripcion" id="descripcion" value="<%= mascota.descripcion %>">
+    
+                    <input type="hidden" name="id" id="id" value="<%= mascota.id %>">
+                    <div class="d-grid">
+                        <button class="btn btn-warning" type="submit">Actualizar</button>
+                    </div>            
+                       
+                </form>
+
+
             <table class="table">
                 <thead>
                   <tr>
@@ -36,12 +49,52 @@
 
     <script>
         const btnEliminar = document.querySelector('#btnEliminar');
-        btnEliminar.addEventListener('click', () =>{
-            console.log('me diste click');
+        btnEliminar.addEventListener('click', async() =>{
+           // console.log('me diste click');
             const id = btnEliminar.dataset.id;
-            console.log(id)
-        })
+           // console.log(id)
 
+           try {
+                const data = await fetch(`/mascotas/${ id }`, {method: 'delete'});
+                const respuesta = await data.json();
+                console.log(respuesta);
+                if (respuesta.estado) {
+                    window.location.href = '/mascotas';
+                } else {
+                    console.log(respuesta);
+                }
+            } catch (error) {
+                console.log(error);
+            }   
+        })
+        const formEditar = document.querySelector('#formEditar');
+        formEditar.addEventListener('submit', async(e) =>{
+            e.preventDefault();
+            // console.log('submit detenido');
+            let nombre = document.querySelector('#nombre').value;
+            let descripcion = document.querySelector('#descripcion').value;
+            let id = document.querySelector('#id').value;
+            console.log(id, nombre, descripcion);
+            try {
+                const data = await fetch(`/mascotas/${ id }`,{
+                    method:'put',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({nombre, descripcion})
+                });
+                const respuesta = await data.json();
+                // console.log(respuesta);
+                if (respuesta.estado) {
+                    window.location.href = '/mascotas'
+                } else {
+                    console.log(respuesta)
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+        });
     </script>
 
 
