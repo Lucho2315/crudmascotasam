@@ -28,6 +28,9 @@ router.post("/", async (req, res)=>{
     }
 });
 
+
+    
+
 /* router para editar un documento */
 router.get("/:id", async (req, res)=>{
     const id = req.params.id;

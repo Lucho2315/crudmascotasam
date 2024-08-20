@@ -28,11 +28,11 @@ app.set('views', __dirname + '/views');
 /* middleware para contenido estatico */ 					
 app.use(express.static(__dirname + '/public'));					
 					
-/* rutas web*/
+/* enrutamiento del proyecto*/
 
 app.use('/', require('./router/rutasweb'));
 app.use('/mascotas', require('./router/mascotas'));
-		
+app.use('/servicios', require('./router/servicios'));		
 					
 /* direccionar a vista 404 cuando se presente el error 404 */					
 app.use((req, res, next)=>{					
