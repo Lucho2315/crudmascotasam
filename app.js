@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 /* conexion a la base de datos mongodb cloud */
 const mongoose = require('mongoose');
 const usuario = 'campus_full_stack';
-const password = 'nfrRTMasvCl4ZeCh';
+const password = 'YFAWOBr0xA60PCXC';
 const dbName = 'veterinaria';
 
 const uri = `mongodb+srv://${usuario}:${password}@cluster0.gp402lu.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`
